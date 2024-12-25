@@ -17,7 +17,3 @@ features:
 # 头领
 
 ## :star: 醒醒
-
-```js
-really
-```

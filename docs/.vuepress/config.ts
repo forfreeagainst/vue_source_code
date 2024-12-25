@@ -18,7 +18,7 @@ export default defineConfig4CustomTheme({
   base: '/vue_source_code/',
   themeConfig: {
     nav: [
-      { text: '首页', link: '/README.md' },
+      { text: '首页', link: '/index.md' },
       {
         //导航栏和侧边栏的字段属性不一样
         text: '模板目录',
