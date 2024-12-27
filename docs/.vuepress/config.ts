@@ -11,8 +11,8 @@ export default defineConfig4CustomTheme({
   locales: {
     '/': {
       lang: 'zh-CN',
-      title: '***文档说明',
-      description: 'VuePress静态资源站点模板',
+      title: 'Vue源码解读',
+      description: 'Vue源码解读文档——静态资源站点',
     },
   },
   base: '/vue_source_code/',
@@ -21,15 +21,37 @@ export default defineConfig4CustomTheme({
       { text: '首页', link: '/index.md' },
       {
         //导航栏和侧边栏的字段属性不一样
-        text: '模板目录',
-        items: [{ text: '测试用例', link: '/demo/test.md' }]
+        text: '重要的源码',
+        items: [
+          { text: '响应式系统', link: '/important/reactivity.md' },
+          { text: '公共工具库', link: '/important/shared.md' }
+        ]
+      },
+      {
+        text: '前置知识',
+        items: [
+          { text: 'AST抽象语法树', link: '/front/AST.md' },
+          { text: 'diff优化', link: '/front/diff.md' },
+          { text: 'package.json介绍', link: '/front/package.md'}
+        ]
       }
     ],
     sidebar: [
       {
-        title: '模板目录',
-        children: [{ title: '测试用例', path: '/demo/test.md' }]
+        title: '重要的源码',
+        children: [
+          { title: '响应式系统', path: '/important/reactivity.md' },
+          { title: '公共工具库', path: '/important/shared.md' }
+        ]
       },
+      {
+        title: '前置知识',
+        children: [
+          { title: 'AST抽象语法树', path: '/front/AST.md' },
+          { title: 'diff优化', path: '/front/diff.md' },
+          { title: 'package.json介绍', path: '/front/package.md'}
+        ]
+      }
     ],
     logo: '/img/logo.png',
     repo: 'forfreeagainst/vue_source_code',
