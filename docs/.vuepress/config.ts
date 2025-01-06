@@ -30,6 +30,7 @@ export default defineConfig4CustomTheme({
       {
         text: '前置知识',
         items: [
+          { text: 'Set、Map、WeakSet、WeakMap', link: "/front/Set.md"},
           { text: 'AST抽象语法树', link: '/front/AST.md' },
           { text: 'diff优化', link: '/front/diff.md' },
           { text: 'package.json介绍', link: '/front/package.md'}
@@ -47,6 +48,7 @@ export default defineConfig4CustomTheme({
       {
         title: '前置知识',
         children: [
+          { title: 'Set、Map、WeakSet、WeakMap', path: "/front/Set.md"},
           { title: 'AST抽象语法树', path: '/front/AST.md' },
           { title: 'diff优化', path: '/front/diff.md' },
           { title: 'package.json介绍', path: '/front/package.md'}
