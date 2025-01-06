@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>响应式系统reactivity | Vue源码解读</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/vue_source_code/img/logo.png">
+    <meta name="description" content="Vue源码解读文档——静态资源站点">
+    <meta name="keywords" content="VuePress静态资源站点模板">
+    
+    <link rel="preload" href="/vue_source_code/assets/css/0.styles.430e6bb9.css" as="style"><link rel="preload" href="/vue_source_code/assets/js/app.aa3d3475.js" as="script"><link rel="preload" href="/vue_source_code/assets/js/2.cbf47227.js" as="script"><link rel="preload" href="/vue_source_code/assets/js/1.59496952.js" as="script"><link rel="preload" href="/vue_source_code/assets/js/29.3aa7bcfb.js" as="script"><link rel="prefetch" href="/vue_source_code/assets/js/10.28e329d8.js"><link rel="prefetch" href="/vue_source_code/assets/js/11.d55bfeeb.js"><link rel="prefetch" href="/vue_source_code/assets/js/12.b7c98e23.js"><link rel="prefetch" href="/vue_source_code/assets/js/13.19069418.js"><link rel="prefetch" href="/vue_source_code/assets/js/14.2960dbf0.js"><link rel="prefetch" href="/vue_source_code/assets/js/15.af4dfa65.js"><link rel="prefetch" href="/vue_source_code/assets/js/16.2b3fb98f.js"><link rel="prefetch" href="/vue_source_code/assets/js/17.67097fa9.js"><link rel="prefetch" href="/vue_source_code/assets/js/18.66dc6637.js"><link rel="prefetch" href="/vue_source_code/assets/js/19.28505e90.js"><link rel="prefetch" href="/vue_source_code/assets/js/20.37bf7ade.js"><link rel="prefetch" href="/vue_source_code/assets/js/21.d355680a.js"><link rel="prefetch" href="/vue_source_code/assets/js/22.768a21f8.js"><link rel="prefetch" href="/vue_source_code/assets/js/23.8db598e9.js"><link rel="prefetch" href="/vue_source_code/assets/js/24.6a3afa2a.js"><link rel="prefetch" href="/vue_source_code/assets/js/25.c2ea773b.js"><link rel="prefetch" href="/vue_source_code/assets/js/26.b5502384.js"><link rel="prefetch" href="/vue_source_code/assets/js/27.b5c63e7b.js"><link rel="prefetch" href="/vue_source_code/assets/js/28.1c63e939.js"><link rel="prefetch" href="/vue_source_code/assets/js/3.44bcbd81.js"><link rel="prefetch" href="/vue_source_code/assets/js/30.7ccbf529.js"><link rel="prefetch" href="/vue_source_code/assets/js/31.35df0323.js"><link rel="prefetch" href="/vue_source_code/assets/js/32.a874bb8c.js"><link rel="prefetch" href="/vue_source_code/assets/js/33.36013a90.js"><link rel="prefetch" href="/vue_source_code/assets/js/34.ec3629db.js"><link rel="prefetch" href="/vue_source_code/assets/js/4.3a38be98.js"><link rel="prefetch" href="/vue_source_code/assets/js/5.02977365.js"><link rel="prefetch" href="/vue_source_code/assets/js/6.96e94ce4.js"><link rel="prefetch" href="/vue_source_code/assets/js/7.83e014ae.js"><link rel="prefetch" href="/vue_source_code/assets/js/vendors~docsearch.0644ee0a.js">
+    <link rel="stylesheet" href="/vue_source_code/assets/css/0.styles.430e6bb9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue_source_code/" class="home-link router-link-active"><img src="/vue_source_code/img/logo.png" alt="Vue源码解读" class="logo"> <span class="site-name can-hide">Vue源码解读</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue_source_code/index.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="重要的源码" class="dropdown-title"><span class="title">重要的源码</span> <span class="arrow down"></span></button> <button type="button" aria-label="重要的源码" class="mobile-dropdown-title"><span class="title">重要的源码</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue_source_code/important/reactivity.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  响应式系统
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/important/shared.html" class="nav-link">
+  公共工具库
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前置知识" class="dropdown-title"><span class="title">前置知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="前置知识" class="mobile-dropdown-title"><span class="title">前置知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue_source_code/front/Set.html" class="nav-link">
+  Set、Map、WeakSet、WeakMap
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/AST.html" class="nav-link">
+  AST抽象语法树
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/diff.html" class="nav-link">
+  diff优化
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/package.html" class="nav-link">
+  package.json介绍
+</a></li></ul></div></div> <a href="https://github.com/forfreeagainst/vue_source_code" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue_source_code/index.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="重要的源码" class="dropdown-title"><span class="title">重要的源码</span> <span class="arrow down"></span></button> <button type="button" aria-label="重要的源码" class="mobile-dropdown-title"><span class="title">重要的源码</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue_source_code/important/reactivity.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  响应式系统
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/important/shared.html" class="nav-link">
+  公共工具库
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前置知识" class="dropdown-title"><span class="title">前置知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="前置知识" class="mobile-dropdown-title"><span class="title">前置知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue_source_code/front/Set.html" class="nav-link">
+  Set、Map、WeakSet、WeakMap
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/AST.html" class="nav-link">
+  AST抽象语法树
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/diff.html" class="nav-link">
+  diff优化
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/package.html" class="nav-link">
+  package.json介绍
+</a></li></ul></div></div> <a href="https://github.com/forfreeagainst/vue_source_code" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>重要的源码</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue_source_code/important/reactivity.html" aria-current="page" class="active sidebar-link">响应式系统</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue_source_code/important/reactivity.html#reactive" class="sidebar-link">reactive</a></li><li class="sidebar-sub-header"><a href="/vue_source_code/important/reactivity.html#ref" class="sidebar-link">ref</a></li></ul></li><li><a href="/vue_source_code/important/shared.html" class="sidebar-link">公共工具库</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前置知识</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="响应式系统reactivity"><a href="#响应式系统reactivity" class="header-anchor">#</a> 响应式系统reactivity</h1> <h2 id="reactive"><a href="#reactive" class="header-anchor">#</a> reactive</h2> <h3 id="使用proxy"><a href="#使用proxy" class="header-anchor">#</a> 使用proxy</h3> <div class="language-reactive.ts extra-class"><pre class="language-text"><code>export function reactive(target: object) {
+  // if trying to observe a readonly proxy, return the readonly version.
+  if (isReadonly(target)) {
+    return target
+  }
+  return createReactiveObject(
+    target,
+    false,
+    mutableHandlers,
+    mutableCollectionHandlers,
+    reactiveMap,
+  )
+}
+
+function createReactiveObject(
+  target: Target,
+  isReadonly: boolean,
+  baseHandlers: ProxyHandler&lt;any&gt;,
+  collectionHandlers: ProxyHandler&lt;any&gt;,
+  proxyMap: WeakMap&lt;Target, any&gt;,
+) {
+  //....此处省略无数代码
+  const proxy = new Proxy(
+    target,
+    targetType === TargetType.COLLECTION ? collectionHandlers : baseHandlers,
+  )
+  proxyMap.set(target, proxy)
+  return proxy
+}
+</code></pre></div><h3 id="使用reflect-重写proxy的proxyhandler中的set-get等其他方法"><a href="#使用reflect-重写proxy的proxyhandler中的set-get等其他方法" class="header-anchor">#</a> 使用Reflect, 重写proxy的proxyHandler中的set/get等其他方法</h3> <p>为什么使用Reflect？
+不直接访问属性或改属性。receiver可以解决this指向问题。eg: Reflect.get(obj, fullname, receiver);</p> <div class="language-md extra-class"><pre class="language-md"><code>const obj = {
+    name: 'durant',
+    fullname() {
+        return 'kevin' + this.name;
+    }
+}
+</code></pre></div><div class="language-baseHandlers.ts extra-class"><pre class="language-text"><code>export const mutableHandlers: ProxyHandler&lt;object&gt; =
+  /*#__PURE__*/ new MutableReactiveHandler()
+
+//重点寻找get的 track
+ get(target: Target, key: string | symbol, receiver: object) {
+    // ...省略
+
+    const res = Reflect.get(target, key, receiver)
+
+    if (isSymbol(key) ? builtInSymbols.has(key) : isNonTrackableKeys(key)) {
+      return res
+    }
+
+    if (!isReadonly) {
+      track(target, TrackOpTypes.GET, key)
+    }
+
+    // ...省略
+
+    return res
+  }
+
+//重点寻找set的 trigger
+  set(
+    target: object,
+    key: string | symbol,
+    value: unknown,
+    receiver: object,
+  ): boolean {
+    let oldValue = (target as any)[key]
+
+    // ...省略
+
+    const hadKey =
+      isArray(target) &amp;&amp; isIntegerKey(key)
+        ? Number(key) &lt; target.length
+        : hasOwn(target, key)
+    const result = Reflect.set(target, key, value, receiver)
+    // don't trigger if target is something up in the prototype chain of original
+    if (target === toRaw(receiver)) {
+      if (!hadKey) {
+        trigger(target, TriggerOpTypes.ADD, key, value)
+      } else if (hasChanged(value, oldValue)) {
+        trigger(target, TriggerOpTypes.SET, key, value, oldValue)
+      }
+    }
+    return result
+  }
+
+</code></pre></div><div class="language-collectionHandlers.ts extra-class"><pre class="language-text"><code>collectionHandlers???
+</code></pre></div><h3 id="收集依赖-track"><a href="#收集依赖-track" class="header-anchor">#</a> 收集依赖 track</h3> <div class="language-reactiveEffect.ts extra-class"><pre class="language-text"><code>export function track(target: object, type: TrackOpTypes, key: unknown) {
+  if (shouldTrack &amp;&amp; activeEffect) {
+    let depsMap = targetMap.get(target)
+    if (!depsMap) {
+      targetMap.set(target, (depsMap = new Map()))
+    }
+    let dep = depsMap.get(key)
+    if (!dep) {
+      depsMap.set(key, (dep = createDep(() =&gt; depsMap!.delete(key))))
+    }
+    trackEffect(
+      activeEffect,
+      dep,
+      __DEV__
+        ? {
+            target,
+            type,
+            key,
+          }
+        : void 0,
+    )
+  }
+}
+</code></pre></div><h3 id="触发更新-trigger"><a href="#触发更新-trigger" class="header-anchor">#</a> 触发更新 trigger</h3> <div class="language-reactiveEffect.ts extra-class"><pre class="language-text"><code>export function trigger(
+  target: object,
+  type: TriggerOpTypes,
+  key?: unknown,
+  newValue?: unknown,
+  oldValue?: unknown,
+  oldTarget?: Map&lt;unknown, unknown&gt; | Set&lt;unknown&gt;,
+) {
+  const depsMap = targetMap.get(target)
+  if (!depsMap) {
+    // never been tracked
+    return
+  }
+
+  let deps: (Dep | undefined)[] = []
+  if (type === TriggerOpTypes.CLEAR) {
+    // collection being cleared
+    // trigger all effects for target
+    deps = [...depsMap.values()]
+  } else if (key === 'length' &amp;&amp; isArray(target)) {
+    const newLength = Number(newValue)
+    depsMap.forEach((dep, key) =&gt; {
+      if (key === 'length' || (!isSymbol(key) &amp;&amp; key &gt;= newLength)) {
+        deps.push(dep)
+      }
+    })
+  } else {
+    // schedule runs for SET | ADD | DELETE
+    if (key !== void 0) {
+      deps.push(depsMap.get(key))
+    }
+
+    // also run for iteration key on ADD | DELETE | Map.SET
+    switch (type) {
+      case TriggerOpTypes.ADD:
+        if (!isArray(target)) {
+          deps.push(depsMap.get(ITERATE_KEY))
+          if (isMap(target)) {
+            deps.push(depsMap.get(MAP_KEY_ITERATE_KEY))
+          }
+        } else if (isIntegerKey(key)) {
+          // new index added to array -&gt; length changes
+          deps.push(depsMap.get('length'))
+        }
+        break
+      case TriggerOpTypes.DELETE:
+        if (!isArray(target)) {
+          deps.push(depsMap.get(ITERATE_KEY))
+          if (isMap(target)) {
+            deps.push(depsMap.get(MAP_KEY_ITERATE_KEY))
+          }
+        }
+        break
+      case TriggerOpTypes.SET:
+        if (isMap(target)) {
+          deps.push(depsMap.get(ITERATE_KEY))
+        }
+        break
+    }
+  }
+
+  pauseScheduling()
+  for (const dep of deps) {
+    if (dep) {
+      triggerEffects(
+        dep,
+        DirtyLevels.Dirty,
+        __DEV__
+          ? {
+              target,
+              type,
+              key,
+              newValue,
+              oldValue,
+              oldTarget,
+            }
+          : void 0,
+      )
+    }
+  }
+  resetScheduling()
+}
+</code></pre></div><h3 id="收集依赖的effect"><a href="#收集依赖的effect" class="header-anchor">#</a> 收集依赖的effect</h3> <div class="language-effect.ts extra-class"><pre class="language-text"><code>export function trackEffect(
+  effect: ReactiveEffect,
+  dep: Dep,
+  debuggerEventExtraInfo?: DebuggerEventExtraInfo,
+) {
+  if (dep.get(effect) !== effect._trackId) {
+    dep.set(effect, effect._trackId)
+    const oldDep = effect.deps[effect._depsLength]
+    if (oldDep !== dep) {
+      if (oldDep) {
+        cleanupDepEffect(oldDep, effect)
+      }
+      effect.deps[effect._depsLength++] = dep
+    } else {
+      effect._depsLength++
+    }
+    if (__DEV__) {
+      effect.onTrack?.(extend({ effect }, debuggerEventExtraInfo!))
+    }
+  }
+}
+</code></pre></div><h3 id="触发依赖的effect"><a href="#触发依赖的effect" class="header-anchor">#</a> 触发依赖的effect</h3> <div class="language-effect.ts extra-class"><pre class="language-text"><code>export function triggerEffects(
+  dep: Dep,
+  dirtyLevel: DirtyLevels,
+  debuggerEventExtraInfo?: DebuggerEventExtraInfo,
+) {
+  pauseScheduling()
+  for (const effect of dep.keys()) {
+    if (!effect.allowRecurse &amp;&amp; effect._runnings) {
+      continue
+    }
+    if (
+      effect._dirtyLevel &lt; dirtyLevel &amp;&amp;
+      (!effect._runnings || dirtyLevel !== DirtyLevels.ComputedValueDirty)
+    ) {
+      const lastDirtyLevel = effect._dirtyLevel
+      effect._dirtyLevel = dirtyLevel
+      if (
+        lastDirtyLevel === DirtyLevels.NotDirty &amp;&amp;
+        (!effect._queryings || dirtyLevel !== DirtyLevels.ComputedValueDirty)
+      ) {
+        if (__DEV__) {
+          effect.onTrigger?.(extend({ effect }, debuggerEventExtraInfo))
+        }
+        effect.trigger()
+        if (effect.scheduler) {
+          queueEffectSchedulers.push(effect.scheduler)
+        }
+      }
+    }
+  }
+  resetScheduling()
+}
+</code></pre></div><h3 id="最重要的effect"><a href="#最重要的effect" class="header-anchor">#</a> ⭐️ 最重要的effect</h3> <div class="language-effect.ts extra-class"><pre class="language-text"><code>export function effect&lt;T = any&gt;(
+  fn: () =&gt; T,
+  options?: ReactiveEffectOptions,
+): ReactiveEffectRunner {
+  if ((fn as ReactiveEffectRunner).effect instanceof ReactiveEffect) {
+    fn = (fn as ReactiveEffectRunner).effect.fn
+  }
+
+  const _effect = new ReactiveEffect(fn, NOOP, () =&gt; {
+    if (_effect.dirty) {
+      _effect.run()
+    }
+  })
+  if (options) {
+    extend(_effect, options)
+    if (options.scope) recordEffectScope(_effect, options.scope)
+  }
+  if (!options || !options.lazy) {
+    _effect.run()
+  }
+  const runner = _effect.run.bind(_effect) as ReactiveEffectRunner
+  runner.effect = _effect
+  return runner
+}
+</code></pre></div><h2 id="ref"><a href="#ref" class="header-anchor">#</a> ref</h2> <h3 id="wrap-包了一层-因为对象在访问属性的时候-可以进行拦截"><a href="#wrap-包了一层-因为对象在访问属性的时候-可以进行拦截" class="header-anchor">#</a> wrap,包了一层，因为对象在访问属性的时候，可以进行拦截</h3> <div class="language-ref.ts extra-class"><pre class="language-text"><code>function createRef(rawValue: unknown, shallow: boolean) {
+  if (isRef(rawValue)) {
+    return rawValue
+  }
+  return new RefImpl(rawValue, shallow)
+}
+
+class RefImpl&lt;T&gt; {
+  private _value: T
+  private _rawValue: T
+
+  public dep?: Dep = undefined
+  public readonly __v_isRef = true
+
+  constructor(
+    value: T,
+    public readonly __v_isShallow: boolean,
+  ) {
+    this._rawValue = __v_isShallow ? value : toRaw(value)
+    this._value = __v_isShallow ? value : toReactive(value)
+  }
+
+  get value() {
+    trackRefValue(this)
+    return this._value
+  }
+
+  set value(newVal) {
+    const useDirectValue =
+      this.__v_isShallow || isShallow(newVal) || isReadonly(newVal)
+    newVal = useDirectValue ? newVal : toRaw(newVal)
+    if (hasChanged(newVal, this._rawValue)) {
+      this._rawValue = newVal
+      this._value = useDirectValue ? newVal : toReactive(newVal)
+      triggerRefValue(this, DirtyLevels.Dirty, newVal)
+    }
+  }
+}
+</code></pre></div><h3 id="ref收集依赖-trackrefvalue"><a href="#ref收集依赖-trackrefvalue" class="header-anchor">#</a> ref收集依赖 trackRefValue</h3> <div class="language-ref.ts extra-class"><pre class="language-text"><code>export function trackRefValue(ref: RefBase&lt;any&gt;) {
+  if (shouldTrack &amp;&amp; activeEffect) {
+    ref = toRaw(ref)
+    trackEffect(
+      activeEffect,
+      ref.dep ||
+        (ref.dep = createDep(
+          () =&gt; (ref.dep = undefined),
+          ref instanceof ComputedRefImpl ? ref : undefined,
+        )),
+      __DEV__
+        ? {
+            target: ref,
+            type: TrackOpTypes.GET,
+            key: 'value',
+          }
+        : void 0,
+    )
+  }
+}
+</code></pre></div><h3 id="ref触发更新-triggerrefvalue"><a href="#ref触发更新-triggerrefvalue" class="header-anchor">#</a> ref触发更新 triggerRefValue</h3> <div class="language-ref.ts extra-class"><pre class="language-text"><code>export function triggerRefValue(
+  ref: RefBase&lt;any&gt;,
+  dirtyLevel: DirtyLevels = DirtyLevels.Dirty,
+  newVal?: any,
+) {
+  ref = toRaw(ref)
+  const dep = ref.dep
+  if (dep) {
+    triggerEffects(
+      dep,
+      dirtyLevel,
+      __DEV__
+        ? {
+            target: ref,
+            type: TriggerOpTypes.SET,
+            key: 'value',
+            newValue: newVal,
+          }
+        : void 0,
+    )
+  }
+}
+
+</code></pre></div><h3 id="剩下同reactive"><a href="#剩下同reactive" class="header-anchor">#</a> 剩下同reactive</h3></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/vue_source_code/important/shared.html">
+        公共工具库
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/vue_source_code/assets/js/app.aa3d3475.js" defer></script><script src="/vue_source_code/assets/js/2.cbf47227.js" defer></script><script src="/vue_source_code/assets/js/1.59496952.js" defer></script><script src="/vue_source_code/assets/js/29.3aa7bcfb.js" defer></script>
+  </body>
+</html>

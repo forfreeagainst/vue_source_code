@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue源码解读</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/vue_source_code/img/logo.png">
+    <meta name="description" content="Vue源码解读文档——静态资源站点">
+    <meta name="keywords" content="VuePress静态资源站点模板">
+    
+    <link rel="preload" href="/vue_source_code/assets/css/0.styles.430e6bb9.css" as="style"><link rel="preload" href="/vue_source_code/assets/js/app.aa3d3475.js" as="script"><link rel="preload" href="/vue_source_code/assets/js/2.cbf47227.js" as="script"><link rel="preload" href="/vue_source_code/assets/js/1.59496952.js" as="script"><link rel="preload" href="/vue_source_code/assets/js/28.1c63e939.js" as="script"><link rel="prefetch" href="/vue_source_code/assets/js/10.28e329d8.js"><link rel="prefetch" href="/vue_source_code/assets/js/11.d55bfeeb.js"><link rel="prefetch" href="/vue_source_code/assets/js/12.b7c98e23.js"><link rel="prefetch" href="/vue_source_code/assets/js/13.19069418.js"><link rel="prefetch" href="/vue_source_code/assets/js/14.2960dbf0.js"><link rel="prefetch" href="/vue_source_code/assets/js/15.af4dfa65.js"><link rel="prefetch" href="/vue_source_code/assets/js/16.2b3fb98f.js"><link rel="prefetch" href="/vue_source_code/assets/js/17.67097fa9.js"><link rel="prefetch" href="/vue_source_code/assets/js/18.66dc6637.js"><link rel="prefetch" href="/vue_source_code/assets/js/19.28505e90.js"><link rel="prefetch" href="/vue_source_code/assets/js/20.37bf7ade.js"><link rel="prefetch" href="/vue_source_code/assets/js/21.d355680a.js"><link rel="prefetch" href="/vue_source_code/assets/js/22.768a21f8.js"><link rel="prefetch" href="/vue_source_code/assets/js/23.8db598e9.js"><link rel="prefetch" href="/vue_source_code/assets/js/24.6a3afa2a.js"><link rel="prefetch" href="/vue_source_code/assets/js/25.c2ea773b.js"><link rel="prefetch" href="/vue_source_code/assets/js/26.b5502384.js"><link rel="prefetch" href="/vue_source_code/assets/js/27.b5c63e7b.js"><link rel="prefetch" href="/vue_source_code/assets/js/29.3aa7bcfb.js"><link rel="prefetch" href="/vue_source_code/assets/js/3.44bcbd81.js"><link rel="prefetch" href="/vue_source_code/assets/js/30.7ccbf529.js"><link rel="prefetch" href="/vue_source_code/assets/js/31.35df0323.js"><link rel="prefetch" href="/vue_source_code/assets/js/32.a874bb8c.js"><link rel="prefetch" href="/vue_source_code/assets/js/33.36013a90.js"><link rel="prefetch" href="/vue_source_code/assets/js/34.ec3629db.js"><link rel="prefetch" href="/vue_source_code/assets/js/4.3a38be98.js"><link rel="prefetch" href="/vue_source_code/assets/js/5.02977365.js"><link rel="prefetch" href="/vue_source_code/assets/js/6.96e94ce4.js"><link rel="prefetch" href="/vue_source_code/assets/js/7.83e014ae.js"><link rel="prefetch" href="/vue_source_code/assets/js/vendors~docsearch.0644ee0a.js">
+    <link rel="stylesheet" href="/vue_source_code/assets/css/0.styles.430e6bb9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue_source_code/" class="home-link router-link-active"><img src="/vue_source_code/img/logo.png" alt="Vue源码解读" class="logo"> <span class="site-name can-hide">Vue源码解读</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue_source_code/index.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="重要的源码" class="dropdown-title"><span class="title">重要的源码</span> <span class="arrow down"></span></button> <button type="button" aria-label="重要的源码" class="mobile-dropdown-title"><span class="title">重要的源码</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue_source_code/important/reactivity.html" class="nav-link">
+  响应式系统
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/important/shared.html" class="nav-link">
+  公共工具库
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前置知识" class="dropdown-title"><span class="title">前置知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="前置知识" class="mobile-dropdown-title"><span class="title">前置知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue_source_code/front/Set.html" class="nav-link">
+  Set、Map、WeakSet、WeakMap
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/AST.html" class="nav-link">
+  AST抽象语法树
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/diff.html" class="nav-link">
+  diff优化
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/package.html" class="nav-link">
+  package.json介绍
+</a></li></ul></div></div> <a href="https://github.com/forfreeagainst/vue_source_code" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue_source_code/index.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="重要的源码" class="dropdown-title"><span class="title">重要的源码</span> <span class="arrow down"></span></button> <button type="button" aria-label="重要的源码" class="mobile-dropdown-title"><span class="title">重要的源码</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue_source_code/important/reactivity.html" class="nav-link">
+  响应式系统
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/important/shared.html" class="nav-link">
+  公共工具库
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前置知识" class="dropdown-title"><span class="title">前置知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="前置知识" class="mobile-dropdown-title"><span class="title">前置知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue_source_code/front/Set.html" class="nav-link">
+  Set、Map、WeakSet、WeakMap
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/AST.html" class="nav-link">
+  AST抽象语法树
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/diff.html" class="nav-link">
+  diff优化
+</a></li><li class="dropdown-item"><!----> <a href="/vue_source_code/front/package.html" class="nav-link">
+  package.json介绍
+</a></li></ul></div></div> <a href="https://github.com/forfreeagainst/vue_source_code" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>重要的源码</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue_source_code/important/reactivity.html" class="sidebar-link">响应式系统</a></li><li><a href="/vue_source_code/important/shared.html" class="sidebar-link">公共工具库</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前置知识</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/vue_source_code/assets/js/app.aa3d3475.js" defer></script><script src="/vue_source_code/assets/js/2.cbf47227.js" defer></script><script src="/vue_source_code/assets/js/1.59496952.js" defer></script><script src="/vue_source_code/assets/js/28.1c63e939.js" defer></script>
+  </body>
+</html>
